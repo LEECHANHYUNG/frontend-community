@@ -1,122 +1,101 @@
-# Frontend Community
+# Figma Parser
 
-프론트엔드 커뮤니티 모노레포 프로젝트입니다. 이 프로젝트는 Turborepo와 pnpm을 사용하여 구성된 모노레포 아키텍처를 기반으로 합니다.
+Figma API를 통해 받아온 디자인 데이터를 쉽게 파싱하고 활용할 수 있는 유틸리티 라이브러리입니다.
 
-## 기술 스택
-
-- **패키지 매니저**: pnpm@9.0.0
-- **모노레포 도구**: Turborepo v2.5.3
-- **Node.js 버전**: >= 18
-- **TypeScript**: v5.8.2
-
-## 프로젝트 구조
-
-```
-frontend-community/
-├── apps/           # 애플리케이션 디렉토리
-├── packages/       # 공유 패키지 디렉토리
-├── package.json    # 루트 패키지 설정
-├── pnpm-workspace.yaml # pnpm 워크스페이스 설정
-└── turbo.json     # Turborepo 설정
-```
-
-## 시작하기
-
-### 필수 요구사항
-
-- Node.js >= 18
-- pnpm >= 9.0.0
-
-### 설치
+## 설치
 
 ```bash
-# 패키지 설치
-pnpm install
+npm install @lch/figma-parser
+# or
+yarn add @lch/figma-parser
 ```
 
-## 사용 가능한 스크립트
+## 주요 기능
 
-```bash
-# 개발 서버 실행
-pnpm dev
+- Figma 파일 및 컴포넌트 정보 파싱
+- 디자인 토큰 추출 (색상, 타이포그래피, 간격 등)
+- 컴포넌트 구조 분석
+- 스타일 속성 변환
 
-# 프로젝트 빌드
-pnpm build
+## 사용 방법
 
-# 린트 검사
-pnpm lint
+### 기본 사용법
 
-# 타입 체크
-pnpm check-types
+```typescript
+import { FigmaParser } from "figma-parser";
 
-# 코드 포맷팅
-pnpm format
+const parser = new FigmaParser({
+  accessToken: "YOUR_FIGMA_ACCESS_TOKEN",
+});
+
+// 파일 정보 파싱
+const fileData = await parser.parseFile("FILE_KEY");
+
+// 특정 노드 파싱
+const nodeData = await parser.parseNode("FILE_KEY", "NODE_ID");
 ```
 
-## Turborepo 파이프라인
+### 디자인 토큰 추출
 
-프로젝트는 다음과 같은 Turborepo 태스크 파이프라인을 포함합니다:
+```typescript
+// 색상 토큰 추출
+const colors = await parser.extractColors("FILE_KEY");
 
-### build
+// 타이포그래피 토큰 추출
+const typography = await parser.extractTypography("FILE_KEY");
 
-- 의존성: 하위 워크스페이스의 build 태스크
-- 입력: 기본 Turbo 입력 및 .env 파일들
-- 출력: .next 디렉토리 (캐시 제외)
+// 간격 토큰 추출
+const spacing = await parser.extractSpacing("FILE_KEY");
+```
 
-### dev
+### 컴포넌트 분석
 
-- 지속적인 개발 모드
-- 캐시 비활성화
-- 영구적 태스크로 실행
+```typescript
+// 컴포넌트 구조 분석
+const components = await parser.analyzeComponents("FILE_KEY");
 
-### lint
+// 컴포넌트 속성 추출
+const componentProps = await parser.extractComponentProps(
+  "FILE_KEY",
+  "COMPONENT_ID"
+);
+```
 
-- 의존성: 하위 워크스페이스의 lint 태스크
+## API 문서
 
-### check-types
+### FigmaParser
 
-- 의존성: 하위 워크스페이스의 check-types 태스크
+#### 생성자
 
-## 워크스페이스 구조
+```typescript
+new FigmaParser(config: {
+  accessToken: string;
+  options?: ParserOptions;
+})
+```
 
-프로젝트는 두 가지 주요 워크스페이스 타입을 포함합니다:
+#### 메서드
 
-1. **apps/**: 최종 사용자용 애플리케이션
-2. **packages/**: 공유 패키지 및 설정
-
-## 개발 가이드라인
-
-1. 새로운 패키지 추가:
-
-   ```bash
-   cd packages
-   pnpm create my-package
-   ```
-
-2. 새로운 앱 추가:
-
-   ```bash
-   cd apps
-   pnpm create next-app my-app
-   ```
-
-3. 워크스페이스 간 의존성 추가:
-   ```bash
-   pnpm add @frontend-community/package-name --filter @frontend-community/app-name
-   ```
-
-## 환경 변수
-
-- 프로젝트는 `.env` 파일을 지원합니다
-- 각 워크스페이스는 자체 `.env` 파일을 가질 수 있습니다
-- `.env.local` 파일들은 전역 의존성으로 처리됩니다
-
-## 기여하기
-
-1. 새로운 브랜치 생성
-2. 변경사항 커밋
-3. 풀 리퀘스트 생성
+- `parseFile(fileKey: string): Promise<ParsedFile>`
+- `parseNode(fileKey: string, nodeId: string): Promise<ParsedNode>`
+- `extractColors(fileKey: string): Promise<ColorTokens>`
+- `extractTypography(fileKey: string): Promise<TypographyTokens>`
+- `extractSpacing(fileKey: string): Promise<SpacingTokens>`
+- `analyzeComponents(fileKey: string): Promise<ComponentAnalysis>`
+- `extractComponentProps(fileKey: string, componentId: string): Promise<ComponentProps>`
 
 ## 라이선스
 
-이 프로젝트는 private 저장소로 관리됩니다.
+MIT
+
+## 기여하기
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 이슈
+
+버그 리포트나 기능 요청은 GitHub 이슈를 통해 제출해주세요.
