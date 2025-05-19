@@ -1,0 +1,27 @@
+{
+  "name": "@lch/figma-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint:fix": "eslint ./src --ext .ts,.tsx --quiet --fix",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint:format": "prettier --loglevel warn --write \"./**/*.{ts,tsx,css,md,json}\"",
+    "lint": "pnpm lint:format && pnpm lint:fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@figma/rest-api-spec": "^0.30.0",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@lch/eslint-config": "workspace:*",
+    "@lch/typescript-config": "workspace:*"
+  }
+}
