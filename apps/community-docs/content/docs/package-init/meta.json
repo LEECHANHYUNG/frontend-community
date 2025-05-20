@@ -1,4 +1,4 @@
 {
   "title": "패키지 초기화",
-  "pages": ["package-init"]
+  "pages": ["package-init", "package-json", "automated-dependency-management"]
 }

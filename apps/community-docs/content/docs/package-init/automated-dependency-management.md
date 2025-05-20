@@ -1,3 +1,8 @@
+---
+title: 자동 디펜던시 관리
+description: automated dependency-management
+---
+
 # Greenkeeper → Snyk 전환 및 보안 관리 워크플로우
 
 ## 🧩 문제 인식: `greenkeeper` 필드 발견

@@ -1,24 +1,42 @@
 {
   "name": "frontend-community",
+  "version": "0.0.1",
+  "description": "Frontend community monorepo project",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "figma-parser": "pnpm --filter @lch/figma-parser"
+    "figma-parser": "pnpm --filter @lch/figma-parser",
+    "clean": "rimraf node_modules **/node_modules",
+    "prepare": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leechanhyung/frontend-community.git"
+  },
+  "keywords": [
+    "monorepo",
+    "frontend",
+    "typescript",
+    "react"
+  ],
+  "author": "leechanhyung",
+  "license": "MIT",
   "devDependencies": {
     "prettier": "^3.5.3",
     "turbo": "^2.5.3",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "rimraf": "^6.0.1"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
-    "node": ">=18"
-  },
-  "dependencies": {
-    "rimraf": "^6.0.1"
+    "node": ">=18",
+    "pnpm": ">=9.0.0"
   }
 }
