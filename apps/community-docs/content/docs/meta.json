@@ -1,4 +1,4 @@
 {
   "title": "Community Docs",
-  "pages": ["---Open Source---", "what-is-open-source", "---Bundler---"]
+  "pages": ["---Open Source---", "what-is-open-source", "package-init", "---Bundler---"]
 }
