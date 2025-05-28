@@ -2,7 +2,7 @@
   "name": "frontend-community",
   "version": "0.0.1",
   "description": "Frontend community monorepo project",
-  "private": true,
+  "private": false,
   "type": "module",
   "scripts": {
     "build": "turbo run build",

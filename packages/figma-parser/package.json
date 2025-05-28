@@ -1,7 +1,7 @@
 {
-  "name": "@lch/figma-parser",
+  "name": "@max-lee2/figma-parser",
   "version": "0.0.1",
-  "description": "Figma file parser ",
+  "description": "Figma file parser for frontend-community",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
