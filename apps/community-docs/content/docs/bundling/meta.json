@@ -1,4 +1,4 @@
 {
   "title": "Bundling",
-  "pages": ["bundling-tools-comparison", "tsup-read-me"]
+  "pages": ["bundling-tools-comparison", "tsup-read-me", "configuration"]
 }
