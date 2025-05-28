@@ -1,27 +1,39 @@
 {
   "name": "@lch/figma-parser",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
+  "version": "0.0.1",
+  "description": "Figma file parser ",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "lint:fix": "eslint ./src --ext .ts,.tsx --quiet --fix",
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint:format": "prettier --loglevel warn --write \"./**/*.{ts,tsx,css,md,json}\"",
-    "lint": "pnpm lint:format && pnpm lint:fix"
+    "clean": "rimraf dist"
   },
-  "keywords": [],
+  "keywords": [
+    "figma",
+    "parser"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@figma/rest-api-spec": "^0.30.0",
-    "rimraf": "^6.0.1",
-    "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "@lch/eslint-config": "workspace:*",
-    "@lch/typescript-config": "workspace:*"
+    "@figma/rest-api-spec": "^0.30.0",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
   }
 }

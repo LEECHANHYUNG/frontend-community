@@ -1,19 +1,18 @@
 {
-  "extends": "@lch/typescript-config/base",
   "compilerOptions": {
-    "declaration": true,
-    "target": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "strict": true,
-    "noImplicitAny": false,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "outDir": "lib",
+    "target": "ES2020",
     "module": "ESNext",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
     "skipLibCheck": true,
-    "rootDir": "src",
-    "emitDeclarationOnly": true,
-    "strictPropertyInitialization": false
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "rootDir": "src"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
