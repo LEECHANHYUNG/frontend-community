@@ -12,6 +12,7 @@
     "check-types": "turbo run check-types",
     "figma-parser": "pnpm --filter @lch/figma-parser",
     "clean": "rimraf node_modules **/node_modules",
+    "docs:dev": "pnpm --filter community-docs dev",
     "prepare": "husky install"
   },
   "repository": {
